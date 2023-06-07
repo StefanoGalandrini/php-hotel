@@ -38,28 +38,34 @@ $hotels = [
 		],
 ];
 
-// GET values and returns filtered array
+// New array variable to store filtered hotels
+$filtered_hotels = [];
+
+
+// GET values from select input and check if they are defined and not equal to default empty string 
 $park = isset($_GET['park']) && $_GET['park'] != "" ? $_GET['park'] : null;
 $vote = isset($_GET['vote']) && $_GET['vote'] != "" ? $_GET['vote'] : null;
 
+
+// FILTER original array and returns results in filtered_array
 $filtered_hotels = array_filter($hotels, function($hotel) use ($park, $vote) {
 	$hotel["parking"] ? $parking = "Yes" : $parking = "No";  // Convert hotel parking boolean to Yes/No string
 
-	// If park is set, check if it matches the hotel's parking availability
+	// If park is set but does not match the hotel's parking availability
 	if ($park !== null && $parking != $park) {
 		return false;
 	}
-	// If vote is set, check if it matches the hotel's rating
+	// If vote is set but dues not match the hotel's rating
 	if ($vote !== null && $hotel["vote"] != $vote) {
 		return false;
 	}
-	// If none of the above conditions are met, include the hotel in the filtered array
+	// Park and vote are defined and at least one of them meets the hotel's requirement, so that hotel is added to the filtered array
 	return true;
 });
 
-// reset the array keys
-$filtered_hotels = array_values($filtered_hotels); 
 
+// reset the array keys
+$filtered_hotels = array_values($filtered_hotels);
 
 ?>
 
@@ -110,8 +116,6 @@ $filtered_hotels = array_values($filtered_hotels);
 				<button class="btn btn-warning" type="reset">Cancella</button>
 			</div>
 		</form>
-
-
 
 		<!-- Table to display hotels information -->
 		<table class="table table-striped">
