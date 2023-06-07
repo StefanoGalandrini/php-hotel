@@ -44,7 +44,7 @@ $filtered_hotels = [];
 
 // GET values from select input and check if they are defined and not equal to default empty string 
 $park = isset($_GET['park']) && $_GET['park'] != "" ? $_GET['park'] : null;
-$vote = isset($_GET['vote']) && $_GET['vote'] != "" ? $_GET['vote'] : null;
+$vote = isset($_GET['vote']) && $_GET['vote'] != "" ? (int)$_GET['vote'] : null;
 
 
 // FILTER original array and returns results in filtered_array
