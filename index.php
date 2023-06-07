@@ -56,7 +56,7 @@ $filtered_hotels = array_filter($hotels, function($hotel) use ($park, $vote) {
 		return false;
 	}
 	// If vote is set but dues not match the hotel's rating
-	if ($vote !== null && $hotel["vote"] != $vote) {
+	if ($vote !== null && $hotel["vote"] < $vote) {
 		return false;
 	}
 	// Park and vote are defined and at least one of them meets the hotel's requirement, so that hotel is added to the filtered array
