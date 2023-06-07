@@ -1,7 +1,6 @@
 <?php
 
     $hotels = [
-
         [
             'name' => 'Hotel Belvedere',
             'description' => 'Hotel Belvedere Descrizione',
@@ -37,7 +36,6 @@
             'vote' => 2,
             'distance_to_center' => 50
         ],
-
     ];
 
 ?>
@@ -53,7 +51,20 @@
 </head>
 
 <body>
+	<ul>
+		<?php
+		foreach ($hotels as $key => $hotel){ 
+		$hotel["parking"] ? $parking = "Yes" : $parking = "No";
+		?>
+		<li>
+			<?= 
+			$hotel["name"].$parking.$hotel["vote"].$hotel["distance_to_center"];
 
+			?>
+		</li> <?php
+		}
+		?>
+	</ul>
 </body>
 
 </html>
