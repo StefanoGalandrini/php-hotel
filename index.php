@@ -48,23 +48,46 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>PHP Hotels</title>
+	<link
+		href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+		rel="stylesheet"
+		integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+		crossorigin="anonymous">
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+		crossorigin="anonymous" defer></script>
 </head>
 
 <body>
-	<ul>
-		<?php
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Name</th>
+				<th scope="col">Parking</th>
+				<th scope="col">Rating</th>
+				<th scope="col">Distance to Center</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php
 		foreach ($hotels as $key => $hotel){ 
 		$hotel["parking"] ? $parking = "Yes" : $parking = "No";
 		?>
-		<li>
-			<?= 
-			$hotel["name"].$parking.$hotel["vote"].$hotel["distance_to_center"];
 
-			?>
-		</li> <?php
+			<tr>
+				<th scope="row"><?= $key + 1 ?></th>
+				<td><?=$hotel["name"]?></td>
+				<td><?=$parking?></td>
+				<td><?=$hotel["vote"]?></td>
+				<td><?=$hotel["distance_to_center"]?></td>
+			</tr>
+			<?php
 		}
 		?>
-	</ul>
+		</tbody>
+	</table>
 </body>
 
 </html>
